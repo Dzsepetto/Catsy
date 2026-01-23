@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Bence\\source\\repos\\Catesy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\ios\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\ios\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\features\\minigames\\games\\lanerunnergame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\features\\minigames\\games\\lanerunnergame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\features\\minigames\\games\\lanerunnerview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\features\\minigames\\games\\lanerunnerview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\features\\minigames\\games\\lanerunnerview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\features\\minigames\\games\\lanerunnerview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\features\\minigames\\games\\lanerunnerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\features\\minigames\\games\\lanerunnerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\tizen\\tizen-manifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\tizen\\tizen-manifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\maccatalyst\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\maccatalyst\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\android\\mainapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\android\\mainapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\android\\mainactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\android\\mainactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\tizen\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\tizen\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\maccatalyst\\appdelegate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\maccatalyst\\appdelegate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\windows\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\windows\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|c:\\users\\bence\\source\\repos\\catesy\\catsy\\platforms\\windows\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EB7502F4-54E3-4D24-8610-CC28489F8DAE}|Catsy\\Catsy.csproj|solutionrelative:catsy\\platforms\\windows\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LaneRunnerGame.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerGame.cs",
+              "RelativeDocumentMoniker": "Catsy\\Features\\Minigames\\Games\\LaneRunnerGame.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerGame.cs",
+              "RelativeToolTip": "Catsy\\Features\\Minigames\\Games\\LaneRunnerGame.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAswKEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T10:54:20.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LaneRunnerView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml.cs",
+              "RelativeDocumentMoniker": "Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml.cs",
+              "RelativeToolTip": "Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAUwG4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T10:51:16.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LaneRunnerViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerViewModel.cs",
+              "RelativeDocumentMoniker": "Catsy\\Features\\Minigames\\Games\\LaneRunnerViewModel.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerViewModel.cs",
+              "RelativeToolTip": "Catsy\\Features\\Minigames\\Games\\LaneRunnerViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T10:47:24.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LaneRunnerView.xaml",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml",
+              "RelativeDocumentMoniker": "Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml",
+              "RelativeToolTip": "Catsy\\Features\\Minigames\\Games\\LaneRunnerView.xaml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAgwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-23T10:40:14.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "tizen-manifest.xml",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Tizen\\tizen-manifest.xml",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\Tizen\\tizen-manifest.xml",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Tizen\\tizen-manifest.xml",
+              "RelativeToolTip": "Catsy\\Platforms\\Tizen\\tizen-manifest.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-01-23T08:23:01.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\MacCatalyst\\Program.cs",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\MacCatalyst\\Program.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\MacCatalyst\\Program.cs",
+              "RelativeToolTip": "Catsy\\Platforms\\MacCatalyst\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:22:56.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\iOS\\Program.cs",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\iOS\\Program.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\iOS\\Program.cs",
+              "RelativeToolTip": "Catsy\\Platforms\\iOS\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:22:54.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainApplication.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Android\\MainApplication.cs",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\Android\\MainApplication.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Android\\MainApplication.cs",
+              "RelativeToolTip": "Catsy\\Platforms\\Android\\MainApplication.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:22:52.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainActivity.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Android\\MainActivity.cs",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\Android\\MainActivity.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Android\\MainActivity.cs",
+              "RelativeToolTip": "Catsy\\Platforms\\Android\\MainActivity.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:22:50.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Tizen\\Main.cs",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\Tizen\\Main.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Tizen\\Main.cs",
+              "RelativeToolTip": "Catsy\\Platforms\\Tizen\\Main.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAQAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:22:46.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppDelegate.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\MacCatalyst\\AppDelegate.cs",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\MacCatalyst\\AppDelegate.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\MacCatalyst\\AppDelegate.cs",
+              "RelativeToolTip": "Catsy\\Platforms\\MacCatalyst\\AppDelegate.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:22:45.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Windows\\App.xaml",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\Windows\\App.xaml",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Windows\\App.xaml",
+              "RelativeToolTip": "Catsy\\Platforms\\Windows\\App.xaml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-01-23T08:22:41.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "app.manifest",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Windows\\app.manifest",
+              "RelativeDocumentMoniker": "Catsy\\Platforms\\Windows\\app.manifest",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\Platforms\\Windows\\app.manifest",
+              "RelativeToolTip": "Catsy\\Platforms\\Windows\\app.manifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
+              "WhenOpened": "2026-01-23T08:22:30.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "App.g.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.cs",
+              "RelativeDocumentMoniker": "Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.cs",
+              "RelativeToolTip": "Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:20:02.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "App.g.i.cs",
+              "DocumentMoniker": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "RelativeDocumentMoniker": "Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "ToolTip": "C:\\Users\\Bence\\source\\repos\\Catesy\\Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "RelativeToolTip": "Catsy\\obj\\Debug\\net9.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T08:19:39.539Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

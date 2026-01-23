@@ -1,0 +1,79 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net9.0-maccatalyst
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Catesy
+build_property.ProjectDir = C:\Users\Bence\source\repos\Catesy\Catesy\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Features/Green/GreenView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Features.Green.GreenView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\Green\GreenView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\Green\GreenView.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Features/Home/HomeView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Features.Home.HomeView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\Home\HomeView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\Home\HomeView.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Features/Minigames/Games/LaneRunnerView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Features.Minigames.Games.LaneRunnerView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\Minigames\Games\LaneRunnerView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\Minigames\Games\LaneRunnerView.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Features/Minigames/MinigameSelectView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Features.Minigames.MinigameSelectView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\Minigames\MinigameSelectView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\Minigames\MinigameSelectView.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Features/Red/RedView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Features.Red.RedView.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\Red\RedView.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\Red\RedView.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Features/Shell/MainLayoutPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Features.Shell.MainLayoutPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Features\Shell\MainLayoutPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Features\Shell\MainLayoutPage.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Users/Bence/source/repos/Catesy/Catesy/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = Catesy.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
