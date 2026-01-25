@@ -16,21 +16,23 @@ public class MainLayoutViewModel : BindableObject
 
     public ICommand GoHomeCommand { get; }
     public ICommand GoRedCommand { get; }
-    public ICommand GoGreenCommand { get; }
+    public ICommand GoShopCommand { get; }
+    public ICommand GoYellowCommand { get; }
     public ICommand GoMinigameSelector { get; }
 
     public MainLayoutViewModel(
         IServiceProvider sp,
         HomeView homeView,
         RedView redView,
-        GreenView greenView)
+        ShopView shopView, YellowView yellowview )
     {
         _sp = sp ?? throw new ArgumentNullException(nameof(sp));
         _currentView = homeView ?? throw new ArgumentNullException(nameof(homeView));
 
         GoHomeCommand = new Command(() => CurrentView = homeView);
         GoRedCommand = new Command(() => CurrentView = redView);
-        GoGreenCommand = new Command(() => CurrentView = greenView);
+        GoShopCommand = new Command(() => CurrentView = shopView);
+        GoYellowCommand = new Command(() => CurrentView = yellowview);
 
         GoMinigameSelector = new Command(() =>
         {

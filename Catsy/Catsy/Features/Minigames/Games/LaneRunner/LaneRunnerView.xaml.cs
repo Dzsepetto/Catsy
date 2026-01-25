@@ -1,5 +1,12 @@
-using Microsoft.Maui.Dispatching;
+﻿using Microsoft.Maui.Dispatching;
 using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Devices;
+
+#if WINDOWS
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.Maui.Platform;
+#endif
 
 namespace Catsy.Features.Minigames.Games;
 
@@ -11,18 +18,29 @@ public partial class LaneRunnerView : ContentView
     private IDispatcherTimer? _timer;
     private DateTime _lastTick;
 
+    private double _panAccumX;
+    private bool _swipeConsumed;
+
     public LaneRunnerView(LaneRunnerViewModel vm)
     {
         InitializeComponent();
-
         BindingContext = vm;
 
         _drawable = new GameDrawable(_world);
         GameView.Drawable = _drawable;
 
+        // Swipe (mobil)
         var pan = new PanGestureRecognizer();
         pan.PanUpdated += OnPanUpdated;
         GameView.GestureRecognizers.Add(pan);
+
+        // Desktopon gombok elrejtése
+        if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
+            ControlsGrid.IsVisible = false;
+
+#if WINDOWS
+        AttachKeyboardWindows();
+#endif
 
         StartGame();
     }
@@ -37,7 +55,7 @@ public partial class LaneRunnerView : ContentView
 
         _timer?.Stop();
         _timer = Dispatcher.CreateTimer();
-        _timer.Interval = TimeSpan.FromMilliseconds(16);
+        _timer.Interval = TimeSpan.FromMilliseconds(16); // ~60 FPS
         _timer.Tick += (_, __) =>
         {
             var now = DateTime.UtcNow;
@@ -54,6 +72,7 @@ public partial class LaneRunnerView : ContentView
         _timer.Start();
     }
 
+    // ====== MOBIL GOMBOK ======
     private void OnLeftClicked(object sender, EventArgs e)
     {
         if (_world.IsGameOver) return;
@@ -66,11 +85,10 @@ public partial class LaneRunnerView : ContentView
         _world.MoveRight();
     }
 
-    private void OnRestartClicked(object sender, EventArgs e) => StartGame();
+    private void OnRestartClicked(object sender, EventArgs e)
+        => StartGame();
 
-    private double _panAccumX;
-    private bool _swipeConsumed;
-
+    // ====== SWIPE (MOBIL) ======
     private void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
     {
         if (_world.IsGameOver) return;
@@ -106,4 +124,44 @@ public partial class LaneRunnerView : ContentView
                 break;
         }
     }
+
+#if WINDOWS
+private void AttachKeyboardWindows()
+{
+    var mauiWindow = Microsoft.Maui.Controls.Application.Current?
+        .Windows.FirstOrDefault();
+
+    if (mauiWindow?.Handler?.PlatformView is not MauiWinUIWindow winuiWindow)
+        return;
+
+    if (winuiWindow.Content is Microsoft.UI.Xaml.FrameworkElement root)
+    {
+        root.KeyDown += OnWindowsKeyDown;
+        root.Focus(FocusState.Programmatic); // 👈 NAGYON FONTOS
+    }
+}
+
+private void OnWindowsKeyDown(object sender, KeyRoutedEventArgs e)
+{
+    if (_world.IsGameOver) return;
+
+    switch (e.Key)
+    {
+        case Windows.System.VirtualKey.Left:
+        case Windows.System.VirtualKey.A:
+            _world.MoveLeft();
+            break;
+
+        case Windows.System.VirtualKey.Right:
+        case Windows.System.VirtualKey.D:
+            _world.MoveRight();
+            break;
+
+        case Windows.System.VirtualKey.R:
+            StartGame();
+            break;
+    }
+}
+#endif
+
 }

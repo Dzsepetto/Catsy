@@ -6,6 +6,7 @@
 
     <VerticalStackLayout>
         <Button Text="Car race" Margin="0,30,0,15" Command="{Binding GoLaneRunner}" />
+        <Button Text="Snake" Margin="0,0,0,15" Command="{Binding GoSnake}" />
         <Button Text="Back" Margin="0,15,0,15" Command="{Binding BackToHome}" />
     </VerticalStackLayout>
 </ContentView>

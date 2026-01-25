@@ -14,13 +14,13 @@
 
         <Grid Grid.Row="1"
               BackgroundColor="Black"
-              ColumnDefinitions="*,*,*,*"
+              ColumnDefinitions="*,*,*,*,*"
               Padding="12,8">
 
             <ImageButton Grid.Column="0"
                          BackgroundColor="Transparent"
-                         Command="{Binding GoHomeCommand}"
-                         Source="btnpink.png"
+                         Command="{Binding GoShopCommand}"
+                         Source="btnshop.png"
                          HeightRequest="26"
                          WidthRequest="26"
                          HorizontalOptions="Center"
@@ -37,16 +37,25 @@
 
             <ImageButton Grid.Column="2"
                          BackgroundColor="Transparent"
-                         Command="{Binding GoGreenCommand}"
+                         Command="{Binding GoHomeCommand}"
+                         Source="btnhome.png"
+                         HeightRequest="26"
+                         WidthRequest="26"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center" />
+            
+            <ImageButton Grid.Column="3"
+                         BackgroundColor="Transparent"
+                         Command="{Binding GoYellowCommand}"
                          Source="btnGreen.png"
                          HeightRequest="26"
                          WidthRequest="26"
                          HorizontalOptions="Center"
                          VerticalOptions="Center" />
-            <ImageButton Grid.Column="3"
+            <ImageButton Grid.Column="4"
                          BackgroundColor="Transparent"
                          Command="{Binding GoMinigameSelector}"
-                         Source="btncyan.png"
+                         Source="btngames.png"
                          HeightRequest="26"
                          WidthRequest="26"
                          HorizontalOptions="Center"

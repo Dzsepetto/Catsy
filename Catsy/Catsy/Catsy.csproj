@@ -60,6 +60,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\Buttons\btnGames.png" />
+	  <None Remove="Resources\Images\Buttons\btnHome.png" />
+	  <None Remove="Resources\Images\Buttons\btnShop.png" />
+	  <None Remove="Resources\Images\Games\Snake\cat01_body.png" />
+	  <None Remove="Resources\Images\Games\Snake\cat01_head.png" />
+	  <None Remove="Resources\Images\Games\Snake\cat01_tail.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
 	</ItemGroup>
@@ -70,22 +79,42 @@
 	  <Folder Include="Core\Unils\" />
 	  <Folder Include="Core\Services\Interfaces\" />
 	  <Folder Include="Core\Services\Implementations\" />
+	  <Folder Include="Features\Minigames\Games\SideRunner\" />
+	  <Folder Include="Resources\Images\Shop\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Games\Snake\cat01_body.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\cat01_head.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\cat01_tail.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Features\Minigames\Games\Snake\SnakeVIew.xaml.cs">
+	    <DependentUpon>SnakeView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Features\Minigames\MinigameSelectView.xaml.cs">
 	    <DependentUpon>MinigameSelectView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Shop\ShopView.xaml.cs">
+	    <DependentUpon>ShopView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Features\Yellow\YellowView.xaml.cs">
+	    <DependentUpon>YellowView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Features\Green\GreenView.xaml">
+	  <MauiXaml Update="Features\Shop\ShopView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Home\HomeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Minigames\Games\LaneRunner\LaneRunnerView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Minigames\Games\Snake\SnakeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Minigames\MinigameSelectView.xaml">
@@ -95,6 +124,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Red\RedView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Yellow\YellowView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using Catsy.Features.Minigames;
 using Catsy.Features.Minigames.Games;
+using Catsy.Features.Minigames.Games.Snake;
 using Catsy.Features.Shell;
 using Microsoft.Extensions.Logging;
 
@@ -26,10 +27,16 @@ namespace Catsy
 
             builder.Services.AddSingleton<HomeView>();
             builder.Services.AddSingleton<RedView>();
-            builder.Services.AddSingleton<GreenView>();
+            builder.Services.AddSingleton<YellowView>();
+
+            builder.Services.AddSingleton<ShopView>();
+            builder.Services.AddSingleton<ShopViewModel>();
 
             builder.Services.AddSingleton<LaneRunnerView>();
             builder.Services.AddSingleton<LaneRunnerViewModel>();
+
+            builder.Services.AddSingleton<SnakeView>();
+            builder.Services.AddSingleton<SnakeViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

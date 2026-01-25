@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView
-    x:Class="Catsy.HomeView"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <Grid>
-        <Label Text="Home"
-               HorizontalOptions="Center"
-               VerticalOptions="Center" />
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Catsy.HomeView">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="12">
+        <Label Grid.Row="0" Text="Animated Scenes" FontSize="18" HorizontalOptions="Center" />
+
+        <StackLayout Grid.Row="1" Spacing="8">
+            <CarouselView
+                x:Name="Carousel"
+                ItemsSource="{Binding Scenes}"
+                Position="{Binding SelectedIndex, Mode=TwoWay}"
+                IsBounceEnabled="False"
+                HeightRequest="320"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Frame használata lekerekített sarkokkal (Frame lehet obsolet figyelmeztetés a .NET9-ben, de fordul) -->
+                        <Frame Margin="12"
+                               CornerRadius="8"
+                               Padding="16"
+                               HasShadow="True"
+                               BackgroundColor="#222">
+                            <Label Text="{Binding Title}"
+                                   FontSize="20"
+                                   TextColor="White"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!-- BindableLayout alapú indikátorok (pontok). A gombokra kattintva OnIndicatorClicked hívódik -->
+            <StackLayout x:Name="IndicatorLayout" Orientation="Horizontal" HorizontalOptions="Center" Spacing="8"
+                         BindableLayout.ItemsSource="{Binding Scenes}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Button WidthRequest="12"
+                                HeightRequest="12"
+                                CornerRadius="6"
+                                BackgroundColor="LightGray"
+                                BorderColor="Transparent"
+                                Clicked="OnIndicatorClicked" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Margin="0,10">
+            <Button Text="⟵" Clicked="OnPrevClicked" WidthRequest="60" />
+            <Button Text="⟶" Clicked="OnNextClicked" WidthRequest="60" />
+        </StackLayout>
     </Grid>
 </ContentView>

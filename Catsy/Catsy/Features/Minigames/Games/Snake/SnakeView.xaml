@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Catsy.Features.Minigames.Games.LaneRunnerView"
+             x:Class="Catsy.Features.Minigames.Games.Snake.SnakeView"
              BackgroundColor="Black">
 
     <Grid RowDefinitions="Auto,*,Auto" Padding="12">
@@ -12,7 +12,7 @@
                     Padding="10,6"/>
 
             <Label Grid.Column="1"
-                   Text="Lane Runner"
+                   Text="Snake"
                    TextColor="White"
                    FontSize="18"
                    HorizontalOptions="Center"
@@ -32,7 +32,6 @@
                    VerticalOptions="Start"
                    ZIndex="10"/>
 
-            
             <Label x:Name="StateLabel"
                    Text=""
                    TextColor="White"
@@ -42,22 +41,28 @@
                    ZIndex="20"/>
         </Grid>
 
-        <Grid x:Name="ControlsGrid"
-              Row="2"
-              ColumnDefinitions="*,*,*"
-              Margin="0,10,0,0">
+        <Grid Row="2" Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <Button Text="⟵"
-                    Clicked="OnLeftClicked"
-                    FontSize="22" />
-            <Button Text="Restart"
-                    Grid.Column="1"
-                    Clicked="OnRestartClicked"
-                    FontSize="18" />
-            <Button Text="⟶"
-                    Grid.Column="2"
-                    Clicked="OnRightClicked"
-                    FontSize="22" />
+            <!-- Up -->
+            <Button Grid.Row="0" Grid.Column="1" Text="⟰" Clicked="OnUpClicked" FontSize="22" />
+
+            <!-- Left, Restart, Right -->
+            <Button Grid.Row="1" Grid.Column="0" Text="⟵" Clicked="OnLeftClicked" FontSize="22" />
+            <Button Grid.Row="1" Grid.Column="1" Text="Restart" Clicked="OnRestartClicked" FontSize="18" />
+            <Button Grid.Row="1" Grid.Column="2" Text="⟶" Clicked="OnRightClicked" FontSize="22" />
+
+            <!-- Down -->
+            <Button Grid.Row="2" Grid.Column="1" Text="⟱" Clicked="OnDownClicked" FontSize="22" />
         </Grid>
 
     </Grid>

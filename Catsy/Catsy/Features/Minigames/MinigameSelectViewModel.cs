@@ -7,6 +7,7 @@ namespace Catsy.Features.Minigames;
 public class MinigameSelectViewModel : BindableObject
 {
     public ICommand GoLaneRunner { get; }
+    public ICommand GoSnake { get; }
     public ICommand BackToHome { get; }
 
     public MinigameSelectViewModel(
@@ -18,6 +19,12 @@ public class MinigameSelectViewModel : BindableObject
         {
             var laneRunnerView = sp.GetRequiredService<Catsy.Features.Minigames.Games.LaneRunnerView>();
             main.CurrentView = laneRunnerView;
+        });
+
+        GoSnake = new Command(() =>
+        {
+            var snakeView = sp.GetRequiredService<Catsy.Features.Minigames.Games.Snake.SnakeView>();
+            main.CurrentView = snakeView;
         });
 
         BackToHome = new Command(() => main.CurrentView = homeView);
