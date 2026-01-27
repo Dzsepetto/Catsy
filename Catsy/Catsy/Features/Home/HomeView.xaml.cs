@@ -1,100 +1,70 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
+ï»¿using Microsoft.Maui.Controls;
 using System;
-using System.Diagnostics;
+
+#if WINDOWS
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+#endif
 
 namespace Catsy;
 
 public partial class HomeView : ContentView
 {
+    private bool _wheelCooldown;
+
     public HomeView()
     {
         InitializeComponent();
-
-        // egyszerû VM példa; ha DI-t használsz, cseréld le itt
         BindingContext = new HomeViewModel();
 
-        // figyeljük a Carousel pozícióváltozását, hogy frissítsük a pontok kinézetét
-        Carousel.PositionChanged += Carousel_PositionChanged;
-
-        // Ha a Scenes betöltése aszinkron történik, érdemes a kollekció változását is figyelni.
-        // Itt egyszerû példa: inicializáljuk a pontok kinézetét késleltetve (UI készenlét után).
-        this.Loaded += (_, __) => UpdateIndicators(Carousel.Position);
-    }
-
-    private void Carousel_PositionChanged(object? sender, PositionChangedEventArgs e)
-    {
-        UpdateIndicators(e.CurrentPosition);
-    }
-
-    private void UpdateIndicators(int selectedIndex)
-    {
-        try
+#if WINDOWS
+        Carousel.HandlerChanged += (_, __) =>
         {
-            for (int i = 0; i < IndicatorLayout.Children.Count; i++)
+            if (Carousel.Handler?.PlatformView is Microsoft.UI.Xaml.Controls.ListView list)
             {
-                var child = IndicatorLayout.Children[i];
-                if (child is Button btn)
-                {
-                    // egyszerû megjelenés: aktív fehér, inaktív halvány szürke
-                    btn.BackgroundColor = (i == selectedIndex) ? Colors.White : Colors.LightGray;
-                    btn.Scale = (i == selectedIndex) ? 1.25 : 1.0;
-                }
+                list.PointerWheelChanged += OnPointerWheelChanged;
             }
+        };
+#endif
+    }
+
+#if WINDOWS
+    private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
+    {
+        if (_wheelCooldown)
+        {
+            e.Handled = true;
+            return;
         }
-        catch (Exception ex)
+
+        if (BindingContext is not HomeViewModel vm)
+            return;
+
+        int delta = e.GetCurrentPoint(null).Properties.MouseWheelDelta;
+
+        if (delta < 0 && vm.CanSwipeRight)
         {
-            Debug.WriteLine($"[HomeView] UpdateIndicators error: {ex}");
+            vm.SelectedIndex++;
+            StartCooldown();
         }
-    }
-
-    private void OnIndicatorClicked(object? sender, EventArgs e)
-    {
-        if (sender is not Button btn) return;
-
-        var scene = btn.BindingContext as SceneModel;
-        var vm = BindingContext as HomeViewModel;
-        if (scene == null || vm == null) return;
-
-        int idx = vm.Scenes.IndexOf(scene);
-        if (idx < 0) return;
-
-        // UI thread-en navigálunk a Carousel-hoz
-        Dispatcher.Dispatch(() =>
+        else if (delta > 0 && vm.CanSwipeLeft)
         {
-            Carousel.ScrollTo(idx, position: ScrollToPosition.Center, animate: true);
-            vm.SelectedIndex = idx;
-            UpdateIndicators(idx);
-        });
+            vm.SelectedIndex--;
+            StartCooldown();
+        }
+
+        // ðŸ”’ SOHA ne engedjÃ¼k tovÃ¡bb
+        e.Handled = true;
     }
 
-    private void OnPrevClicked(object? sender, EventArgs e)
+    private void StartCooldown()
     {
-        var vm = BindingContext as HomeViewModel;
-        if (vm == null) return;
-        var count = vm.Scenes?.Count ?? 0;
-        if (count == 0) return;
-        int newIndex = Math.Max(0, Carousel.Position - 1);
-        Dispatcher.Dispatch(() =>
-        {
-            Carousel.ScrollTo(newIndex, position: ScrollToPosition.Center, animate: true);
-            vm.SelectedIndex = newIndex;
-            UpdateIndicators(newIndex);
-        });
-    }
+        _wheelCooldown = true;
 
-    private void OnNextClicked(object? sender, EventArgs e)
-    {
-        var vm = BindingContext as HomeViewModel;
-        if (vm == null) return;
-        var count = vm.Scenes?.Count ?? 0;
-        if (count == 0) return;
-        int newIndex = Math.Min(count - 1, Carousel.Position + 1);
-        Dispatcher.Dispatch(() =>
-        {
-            Carousel.ScrollTo(newIndex, position: ScrollToPosition.Center, animate: true);
-            vm.SelectedIndex = newIndex;
-            UpdateIndicators(newIndex);
-        });
+        // megakadÃ¡lyozza az ugrÃ¡lÃ¡st / gyors scrollt
+        Dispatcher.DispatchDelayed(
+            TimeSpan.FromMilliseconds(250),
+            () => _wheelCooldown = false);
     }
+#endif
 }

@@ -1,11 +1,11 @@
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Dispatching;
+using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Devices;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 #if WINDOWS
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.Maui.Platform;
 #endif
@@ -14,202 +14,207 @@ namespace Catsy.Features.Minigames.Games.Snake;
 
 public partial class SnakeView : ContentView
 {
-    private readonly GameWorld _world = new();
-    private readonly GameDrawable _drawable;
+    private readonly Dictionary<GridValue, ImageSource> gridValToImage = new()
+    {
+        { GridValue.Empty, Images.Empty },
+        { GridValue.Snake, Images.SnakeBody },
+        { GridValue.Food, Images.Food },
+    };
 
-    private IDispatcherTimer? _timer;
-    private DateTime _lastTick;
+    private readonly Dictionary<Direction, int> dirToRotation = new()
+    {
+        {Direction.Up, 0 },
+        {Direction.Right, 90 },
+        {Direction.Down, 180 },
+        {Direction.Left, 270 }
+    };
 
-    private double _panAccumX;
-    private double _panAccumY;
-    private bool _swipeConsumed;
+    private readonly int rows = 12, cols = 12;
+    private readonly Image[,] gridImages;
+
+    private GameState gameState = null!;
+    private readonly InputState input = new();
+
+    private bool isRunning;
+    private Task? gameLoopTask;
 
     public SnakeView(SnakeViewModel vm)
     {
         InitializeComponent();
         BindingContext = vm;
 
-        _drawable = new GameDrawable(_world);
-        GameView.Drawable = _drawable;
-
-        // Swipe (mobile)
-        var pan = new PanGestureRecognizer();
-        pan.PanUpdated += OnPanUpdated;
-        GameView.GestureRecognizers.Add(pan);
-
-        // Keep on-screen controls visible by default; hide if you prefer:
-        // if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
-        //     ControlsGrid.IsVisible = false;
-
-#if WINDOWS
-        AttachKeyboardWindows();
-#endif
-
-        StartGame();
+        gridImages = SetupGrid();
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
     }
 
-    private void StartGame()
+    private void OnLoaded(object? sender, EventArgs e)
     {
-        _world.Reset();
-        StateLabel.Text = "";
-        ScoreLabel.Text = "Score: 0";
+        ResetGame();
+        ShowOverlay("Press any key to start");
+    }
 
-        _lastTick = DateTime.UtcNow;
-
-        _timer?.Stop();
-        _timer = Dispatcher.CreateTimer();
-        _timer.Interval = TimeSpan.FromMilliseconds(16); // ~60 FPS
-        _timer.Tick += (_, __) =>
+    // =========================
+    // INPUT ENTRY POINT
+    // =========================
+    public void HandleInput(Direction direction)
+    {
+        // Start / Restart
+        if (!isRunning)
         {
-            var now = DateTime.UtcNow;
-            var dt = (float)(now - _lastTick).TotalSeconds;
-            _lastTick = now;
-
-            _world.Update(dt, (float)GameView.Width, (float)GameView.Height);
-
-            ScoreLabel.Text = $"Score: {_world.Score}";
-            StateLabel.Text = _world.IsGameOver ? "GAME OVER" : "";
-
-            GameView.Invalidate();
-        };
-        _timer.Start();
-    }
-
-    // ====== MOBILE BUTTONS ======
-    private void OnLeftClicked(object sender, EventArgs e)
-    {
-        if (_world.IsGameOver) return;
-        _world.SetDirectionLeft();
-    }
-
-    private void OnRightClicked(object sender, EventArgs e)
-    {
-        if (_world.IsGameOver) return;
-        _world.SetDirectionRight();
-    }
-
-    private void OnUpClicked(object sender, EventArgs e)
-    {
-        if (_world.IsGameOver) return;
-        _world.SetDirectionUp();
-    }
-
-    private void OnDownClicked(object sender, EventArgs e)
-    {
-        if (_world.IsGameOver) return;
-        _world.SetDirectionDown();
-    }
-
-    private void OnRestartClicked(object sender, EventArgs e)
-        => StartGame();
-
-    // ====== SWIPE (MOBILE) ======
-    private void OnPanUpdated(object? sender, PanUpdatedEventArgs e)
-    {
-        if (_world.IsGameOver) return;
-
-        switch (e.StatusType)
-        {
-            case GestureStatus.Started:
-                _panAccumX = 0;
-                _panAccumY = 0;
-                _swipeConsumed = false;
-                break;
-
-            case GestureStatus.Running:
-                if (_swipeConsumed) return;
-
-                _panAccumX = e.TotalX;
-                _panAccumY = e.TotalY;
-
-                if (Math.Abs(_panAccumX) > Math.Abs(_panAccumY))
-                {
-                    if (_panAccumX <= -35)
-                    {
-                        _world.SetDirectionLeft();
-                        _swipeConsumed = true;
-                    }
-                    else if (_panAccumX >= 35)
-                    {
-                        _world.SetDirectionRight();
-                        _swipeConsumed = true;
-                    }
-                }
-                else
-                {
-                    if (_panAccumY <= -35)
-                    {
-                        _world.SetDirectionUp();
-                        _swipeConsumed = true;
-                    }
-                    else if (_panAccumY >= 35)
-                    {
-                        _world.SetDirectionDown();
-                        _swipeConsumed = true;
-                    }
-                }
-                break;
-
-            case GestureStatus.Completed:
-            case GestureStatus.Canceled:
-                _panAccumX = 0;
-                _panAccumY = 0;
-                _swipeConsumed = false;
-                break;
-        }
-    }
-
-#if WINDOWS
-    private void AttachKeyboardWindows()
-    {
-        var mauiWindow = Microsoft.Maui.Controls.Application.Current?
-            .Windows.FirstOrDefault();
-
-        if (mauiWindow?.Handler?.PlatformView is not MauiWinUIWindow winuiWindow)
-            return;
-
-        if (winuiWindow.Content is Microsoft.UI.Xaml.FrameworkElement root)
-        {
-            root.KeyDown += OnWindowsKeyDown;
-            root.Focus(FocusState.Programmatic); // important
-        }
-    }
-
-    private void OnWindowsKeyDown(object sender, KeyRoutedEventArgs e)
-    {
-        if (_world.IsGameOver)
-        {
-            if (e.Key == Windows.System.VirtualKey.R)
-                StartGame();
+            ResetGame();
+            gameLoopTask = GameLoop();
             return;
         }
 
-        switch (e.Key)
+        // Running game
+        input.Press(direction);
+    }
+
+    // =========================
+    // GAME LOOP
+    // =========================
+    private async Task GameLoop()
+    {
+        isRunning = true;
+        HideOverlay();
+
+        while (!gameState.GameOver)
         {
-            case Windows.System.VirtualKey.Left:
-            case Windows.System.VirtualKey.A:
-                _world.SetDirectionLeft();
-                break;
+            await Task.Delay(120);
+            gameState.ApplyInput(input);
+            gameState.Move();
+            Draw();
+        }
 
-            case Windows.System.VirtualKey.Right:
-            case Windows.System.VirtualKey.D:
-                _world.SetDirectionRight();
-                break;
+        isRunning = false;
+        ShowOverlay("Game Over\nPress any key to restart");
+    }
 
-            case Windows.System.VirtualKey.Up:
-            case Windows.System.VirtualKey.W:
-                _world.SetDirectionUp();
-                break;
+    // =========================
+    // GAME RESET
+    // =========================
+    private void ResetGame()
+    {
+        gameState = new GameState(rows, cols);
+        input.Clear();
+        Draw();
+    }
 
-            case Windows.System.VirtualKey.Down:
-            case Windows.System.VirtualKey.S:
-                _world.SetDirectionDown();
-                break;
+    // =========================
+    // GRID SETUP
+    // =========================
 
-            case Windows.System.VirtualKey.R:
-                StartGame();
-                break;
+    private void DrawSnakeHead()
+    {
+        Position headPos = gameState.HeadPosition();
+        Image image = gridImages[headPos.Row, headPos.Col];
+        image.Source = Images.SnakeHead;
+
+        int rotation = dirToRotation[gameState.Dir];
+        image.RenderTransform = new RotateTransform(rotation);
+    }
+    private Image[,] SetupGrid()
+    {
+        Image[,] images = new Image[rows, cols];
+
+        GameGrid.RowDefinitions.Clear();
+        GameGrid.ColumnDefinitions.Clear();
+        GameGrid.Children.Clear();
+
+        for (int r = 0; r < rows; r++)
+            GameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+
+        for (int c = 0; c < cols; c++)
+            GameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                Image img = new Image
+                {
+                    Source = Images.Empty,
+                    RenderTransformOrigin = new Point(0.5, 0.5),
+                    Aspect = Aspect.Fill
+                };
+
+                images[r, c] = img;
+                GameGrid.Children.Add(img);
+                Grid.SetRow(img, r);
+                Grid.SetColumn(img, c);
+            }
+        }
+
+        return images;
+    }
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+#if WINDOWS
+    SnakeInputRouter.CurrentSnakeView = this;
+#endif
+    }
+
+    private void OnUnloaded(object? sender, EventArgs e)
+    {
+#if WINDOWS
+    if (SnakeInputRouter.CurrentSnakeView == this)
+        SnakeInputRouter.CurrentSnakeView = null;
+#endif
+    }
+
+
+
+    // =========================
+    // DRAW
+    // =========================
+    private void Draw()
+    {
+        DrawGrid();
+        DrawSnakeHead();
+        ScoreText.Text = $"Score: {gameState.Score}";
+    }
+
+    private void DrawGrid()
+    {
+        for (int r = 0; r < rows; r++)
+        {
+            for (int c = 0; c < cols; c++)
+            {
+                GridValue val = gameState.Grid[r, c];
+                gridImages[r, c].Source = gridValToImage[val];
+                gridImages[r, c].renderTransform = Transform.Identity;
+            }
         }
     }
-#endif
+
+    // =========================
+    // OVERLAY
+    // =========================
+    private void ShowOverlay(string text)
+    {
+        Overlay.IsVisible = true;
+        OverlayText.Text = text;
+    }
+
+    private void HideOverlay()
+    {
+        Overlay.IsVisible = false;
+    }
+
+    // =========================
+    // MOBILE BUTTONS
+    // =========================
+    private void UpClicked(object sender, EventArgs e)
+        => HandleInput(Direction.Up);
+
+    private void DownClicked(object sender, EventArgs e)
+        => HandleInput(Direction.Down);
+
+    private void LeftClicked(object sender, EventArgs e)
+        => HandleInput(Direction.Left);
+
+    private void RightClicked(object sender, EventArgs e)
+        => HandleInput(Direction.Right);
 }

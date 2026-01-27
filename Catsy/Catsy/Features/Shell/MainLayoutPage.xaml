@@ -2,65 +2,83 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Catsy.Features.Shell"
+             xmlns:input="clr-namespace:Catsy"
              x:Class="Catsy.MainLayoutPage"
              x:DataType="vm:MainLayoutViewModel"
-             BackgroundColor="White"
-             Padding="{OnPlatform WinUI='0,0,0,0', Default='0'}">
+             BackgroundColor="#202020">
 
-    <Grid RowDefinitions="*,64">
+    <!-- 🔑 billentyűfigyelő -->
+    <ContentPage.Behaviors>
+        <input:KeyboardListenerBehavior />
+    </ContentPage.Behaviors>
 
-        <ContentView Grid.Row="0"
-                     Content="{Binding CurrentView}" />
+    <!-- 🧱 háttér + középre igazítás -->
+    <Grid HorizontalOptions="Center"
+      VerticalOptions="Center">
 
-        <Grid Grid.Row="1"
-              BackgroundColor="Black"
-              ColumnDefinitions="*,*,*,*,*"
-              Padding="12,8">
+        <!-- 📱 telefon méretű konténer -->
+        <Grid WidthRequest="420"
+              HeightRequest="900"
+              BackgroundColor="White">
 
-            <ImageButton Grid.Column="0"
-                         BackgroundColor="Transparent"
-                         Command="{Binding GoShopCommand}"
-                         Source="btnshop.png"
-                         HeightRequest="26"
-                         WidthRequest="26"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center" />
+            <!-- 🔽 IDE KÖLTÖZÖTT A RÉGI TARTALOM -->
+            <Grid RowDefinitions="*,64">
 
-            <ImageButton Grid.Column="1"
-                         BackgroundColor="Transparent"
-                         Command="{Binding GoRedCommand}"
-                         Source="btnRed.png"
-                         HeightRequest="26"
-                         WidthRequest="26"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center" />
+                <ContentView Grid.Row="0"
+                             Content="{Binding CurrentView}" />
 
-            <ImageButton Grid.Column="2"
-                         BackgroundColor="Transparent"
-                         Command="{Binding GoHomeCommand}"
-                         Source="btnhome.png"
-                         HeightRequest="26"
-                         WidthRequest="26"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center" />
-            
-            <ImageButton Grid.Column="3"
-                         BackgroundColor="Transparent"
-                         Command="{Binding GoYellowCommand}"
-                         Source="btnGreen.png"
-                         HeightRequest="26"
-                         WidthRequest="26"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center" />
-            <ImageButton Grid.Column="4"
-                         BackgroundColor="Transparent"
-                         Command="{Binding GoMinigameSelector}"
-                         Source="btngames.png"
-                         HeightRequest="26"
-                         WidthRequest="26"
-                         HorizontalOptions="Center"
-                         VerticalOptions="Center" />
+                <Grid Grid.Row="1"
+                      BackgroundColor="Black"
+                      ColumnDefinitions="*,*,*,*,*"
+                      Padding="12,8">
+
+                    <ImageButton Grid.Column="0"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding GoShopCommand}"
+                                 Source="btnshop.png"
+                                 HeightRequest="26"
+                                 WidthRequest="26"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+
+                    <ImageButton Grid.Column="1"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding GoRedCommand}"
+                                 Source="btnRed.png"
+                                 HeightRequest="26"
+                                 WidthRequest="26"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+
+                    <ImageButton Grid.Column="2"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding GoHomeCommand}"
+                                 Source="btnhome.png"
+                                 HeightRequest="26"
+                                 WidthRequest="26"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+
+                    <ImageButton Grid.Column="3"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding GoYellowCommand}"
+                                 Source="btnGreen.png"
+                                 HeightRequest="26"
+                                 WidthRequest="26"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+
+                    <ImageButton Grid.Column="4"
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding GoMinigameSelector}"
+                                 Source="btngames.png"
+                                 HeightRequest="26"
+                                 WidthRequest="26"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                </Grid>
+
+            </Grid>
         </Grid>
-
     </Grid>
 </ContentPage>

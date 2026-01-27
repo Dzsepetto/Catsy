@@ -63,9 +63,15 @@
 	  <None Remove="Resources\Images\Buttons\btnGames.png" />
 	  <None Remove="Resources\Images\Buttons\btnHome.png" />
 	  <None Remove="Resources\Images\Buttons\btnShop.png" />
+	  <None Remove="Resources\Images\Games\Snake\Body.png" />
 	  <None Remove="Resources\Images\Games\Snake\cat01_body.png" />
 	  <None Remove="Resources\Images\Games\Snake\cat01_head.png" />
 	  <None Remove="Resources\Images\Games\Snake\cat01_tail.png" />
+	  <None Remove="Resources\Images\Games\Snake\DeadBody.png" />
+	  <None Remove="Resources\Images\Games\Snake\DeadHead.png" />
+	  <None Remove="Resources\Images\Games\Snake\Empty.png" />
+	  <None Remove="Resources\Images\Games\Snake\Food.png" />
+	  <None Remove="Resources\Images\Games\Snake\Head.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +93,15 @@
 	  <MauiImage Include="Resources\Images\Games\Snake\cat01_body.png" />
 	  <MauiImage Include="Resources\Images\Games\Snake\cat01_head.png" />
 	  <MauiImage Include="Resources\Images\Games\Snake\cat01_tail.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\Images\Games\Snake\body.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\deadbody.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\deadhead.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\empty.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\food.png" />
+	  <MauiImage Include="Resources\Images\Games\Snake\head.png" />
 	</ItemGroup>
 
 	<ItemGroup>
