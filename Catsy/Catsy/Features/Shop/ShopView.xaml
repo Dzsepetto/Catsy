@@ -6,30 +6,95 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:Catsy.Features.Models">
 
-    <CollectionView ItemsSource="{Binding Items}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:ShopItem">
-                <Frame Margin="10"
-                       Padding="10"
-                       CornerRadius="12"
-                       BorderColor="Gray">
+    <Grid RowDefinitions="Auto,*">
 
-                    <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
-                        <Image Source="{Binding Icon}"
-                               WidthRequest="64"
-                               HeightRequest="64"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+        <Grid Grid.Row="0"
+              Padding="12"
+              ColumnDefinitions="Auto,*">
+            <ImageButton x:Name="BackButton"
+                         IsVisible="{Binding IsInCategory}"
+                         Source="back_arrow.png"
+                         BackgroundColor="Red"
+                         HeightRequest="32"
+                         WidthRequest="32"
+                         Clicked="OnBackClicked"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center" />
 
-                        <VerticalStackLayout VerticalOptions="Center">
-                            <Label Text="{Binding Name}"
-                                   FontSize="18"
-                                   FontAttributes="Bold"/>
-                            <Label Text="{Binding Price, StringFormat='Price: {0}'}"/>
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            <Label Grid.Column="1"
+                   Text="{Binding HeaderTitle}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <VerticalStackLayout IsVisible="{Binding IsCategoryMenu}"
+                                 Spacing="24"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+                <Button Text="Background"
+                        Padding="18,14"
+                        CornerRadius="14"
+                        Clicked="OnBackgroundClicked"
+                        WidthRequest="240" />
+
+                <Button Text="Accessories"
+                        Padding="18,14"
+                        CornerRadius="14"
+                        Clicked="OnAccessoriesClicked"
+                        WidthRequest="240" />
+
+                <Button Text="Boosts"
+                        Padding="18,14"
+                        CornerRadius="14"
+                        Clicked="OnBoostsClicked"
+                        WidthRequest="240" />
+            </VerticalStackLayout>
+
+
+            <CollectionView IsVisible="{Binding IsInCategory}"
+                            ItemsSource="{Binding Items}"
+                            Margin="12"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="14" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ShopItem">
+                        <Frame Padding="14"
+                               CornerRadius="12"
+                               BorderColor="Gray"
+                               HasShadow="False">
+
+                            <VerticalStackLayout Spacing="10"
+                                                 HorizontalOptions="Center"
+                                                 VerticalOptions="Center">
+
+                                <Image Source="{Binding Icon}"
+                                       WidthRequest="72"
+                                       HeightRequest="72"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"/>
+
+                                <Label Text="{Binding Price, StringFormat='Price: {0}'}"
+                                       HorizontalTextAlignment="Center"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </Grid>
+    </Grid>
 </ContentView>
