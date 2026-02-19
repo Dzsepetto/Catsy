@@ -12,6 +12,7 @@ namespace Catsy.Features.Models
         public string Name { get; set; }
         public int Price { get; set; }
         public string Icon { get; set; } // pl. sprite png
+        public string Category { get; set; }
         public bool IsOwned { get; set; }
     }
 }

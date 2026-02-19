@@ -12,26 +12,27 @@
         <input:KeyboardListenerBehavior />
     </ContentPage.Behaviors>
 
-    <Grid>
+    <Grid BackgroundColor="Black">
 
-        <Grid
-            WidthRequest="420"
-            HeightRequest="900"
-            HorizontalOptions="Center"
-            VerticalOptions="Center"
-            BackgroundColor="White">
+        <!-- Telefon keret (éles sarkokkal), középen -->
+        <Border x:Name="PhoneContainer"
+                WidthRequest="420"
+                HeightRequest="900"
+                BackgroundColor="White"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                StrokeThickness="0">
 
-            <Grid RowDefinitions="*,64">
+            <Grid RowDefinitions="*,64"
+                  BackgroundColor="White">
 
-                <ContentView
-                    Grid.Row="0"
-                    Content="{Binding CurrentView}" />
+                <ContentView Grid.Row="0"
+                             Content="{Binding CurrentView}" />
 
-                <Grid
-                    Grid.Row="1"
-                    BackgroundColor="red"
-                    ColumnDefinitions="*,*,*,*,*"
-                    Padding="12,8">
+                <Grid Grid.Row="1"
+                      BackgroundColor="red"
+                      ColumnDefinitions="*,*,*,*,*"
+                      Padding="12,8">
 
                     <ImageButton Grid.Column="0"
                                  BackgroundColor="Transparent"
@@ -80,6 +81,7 @@
                 </Grid>
 
             </Grid>
-        </Grid>
+        </Border>
+
     </Grid>
 </ContentPage>

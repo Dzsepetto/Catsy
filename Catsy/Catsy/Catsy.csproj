@@ -80,11 +80,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Core\Models\" />
-	  <Folder Include="Core\Navigation\" />
-	  <Folder Include="Core\Unils\" />
-	  <Folder Include="Core\Services\Interfaces\" />
-	  <Folder Include="Core\Services\Implementations\" />
 	  <Folder Include="Features\Minigames\Games\SideRunner\" />
 	  <Folder Include="Resources\Images\Shop\" />
 	</ItemGroup>
