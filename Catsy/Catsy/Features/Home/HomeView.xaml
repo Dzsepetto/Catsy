@@ -1,51 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Catsy.HomeView">
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Catsy.HomeView">
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="12">
+    <Border
+        BackgroundColor="Green"
+        StrokeThickness="0">
 
-        <!-- TITLE -->
-        <Label
-            Grid.Row="0"
-            Text="Animated Scenes"
-            FontSize="18"
-            HorizontalOptions="Center" />
+        <Grid x:Name="PagerHost" />
 
-        <!-- CAROUSEL + INDICATOR -->
-        <Grid Grid.Row="1" RowDefinitions="*,Auto">
-
-            <CarouselView
-                x:Name="Carousel"
-                ItemsSource="{Binding Pages}"
-                Position="{Binding SelectedIndex, Mode=TwoWay}"
-                IndicatorView="{x:Reference indicatorView}"
-                IsBounceEnabled="False">
-
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="20"
-                               Padding="20"
-                               BackgroundColor="#222"
-                               CornerRadius="12">
-                            <Label
-                                Text="{Binding .}"
-                                FontSize="24"
-                                TextColor="White"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"/>
-                        </Frame>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-
-            <IndicatorView
-                x:Name="indicatorView"
-                Grid.Row="1"
-                HorizontalOptions="Center"
-                IndicatorColor="LightGray"
-                SelectedIndicatorColor="White" />
-        </Grid>
-
-    </Grid>
+    </Border>
 </ContentView>

@@ -1,12 +1,10 @@
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #if WINDOWS
-using Microsoft.UI.Xaml.Input;
 using Microsoft.Maui.Platform;
 #endif
 
@@ -23,13 +21,14 @@ public partial class SnakeView : ContentView
 
     private readonly Dictionary<Direction, int> dirToRotation = new()
     {
-        {Direction.Up, 0 },
-        {Direction.Right, 90 },
-        {Direction.Down, 180 },
-        {Direction.Left, 270 }
+        { Direction.Up, 0 },
+        { Direction.Right, 90 },
+        { Direction.Down, 180 },
+        { Direction.Left, 270 }
     };
 
-    private readonly int rows = 12, cols = 12;
+    private readonly int rows = 12;
+    private readonly int cols = 12;
     private readonly Image[,] gridImages;
 
     private GameState gameState = null!;
@@ -59,7 +58,6 @@ public partial class SnakeView : ContentView
     // =========================
     public void HandleInput(Direction direction)
     {
-        // Start / Restart
         if (!isRunning)
         {
             ResetGame();
@@ -67,7 +65,6 @@ public partial class SnakeView : ContentView
             return;
         }
 
-        // Running game
         input.Press(direction);
     }
 
@@ -82,6 +79,7 @@ public partial class SnakeView : ContentView
         while (!gameState.GameOver)
         {
             await Task.Delay(120);
+
             gameState.ApplyInput(input);
             gameState.Move();
             Draw();
@@ -104,16 +102,6 @@ public partial class SnakeView : ContentView
     // =========================
     // GRID SETUP
     // =========================
-
-    private void DrawSnakeHead()
-    {
-        Position headPos = gameState.HeadPosition();
-        Image image = gridImages[headPos.Row, headPos.Col];
-        image.Source = Images.SnakeHead;
-
-        int rotation = dirToRotation[gameState.Dir];
-        image.RenderTransform = new RotateTransform(rotation);
-    }
     private Image[,] SetupGrid()
     {
         Image[,] images = new Image[rows, cols];
@@ -123,10 +111,10 @@ public partial class SnakeView : ContentView
         GameGrid.Children.Clear();
 
         for (int r = 0; r < rows; r++)
-            GameGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+            GameGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
 
         for (int c = 0; c < cols; c++)
-            GameGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
+            GameGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
 
         for (int r = 0; r < rows; r++)
         {
@@ -135,8 +123,9 @@ public partial class SnakeView : ContentView
                 Image img = new Image
                 {
                     Source = Images.Empty,
-                    RenderTransformOrigin = new Point(0.5, 0.5),
-                    Aspect = Aspect.Fill
+                    Aspect = Aspect.Fill,
+                    AnchorX = 0.5,
+                    AnchorY = 0.5
                 };
 
                 images[r, c] = img;
@@ -148,23 +137,23 @@ public partial class SnakeView : ContentView
 
         return images;
     }
+
     protected override void OnHandlerChanged()
     {
         base.OnHandlerChanged();
+
 #if WINDOWS
-    SnakeInputRouter.CurrentSnakeView = this;
+        SnakeInputRouter.CurrentSnakeView = this;
 #endif
     }
 
     private void OnUnloaded(object? sender, EventArgs e)
     {
 #if WINDOWS
-    if (SnakeInputRouter.CurrentSnakeView == this)
-        SnakeInputRouter.CurrentSnakeView = null;
+        if (SnakeInputRouter.CurrentSnakeView == this)
+            SnakeInputRouter.CurrentSnakeView = null;
 #endif
     }
-
-
 
     // =========================
     // DRAW
@@ -183,10 +172,21 @@ public partial class SnakeView : ContentView
             for (int c = 0; c < cols; c++)
             {
                 GridValue val = gameState.Grid[r, c];
-                gridImages[r, c].Source = gridValToImage[val];
-                gridImages[r, c].renderTransform = Transform.Identity;
+                Image img = gridImages[r, c];
+
+                img.Source = gridValToImage[val];
+                img.Rotation = 0;
             }
         }
+    }
+
+    private void DrawSnakeHead()
+    {
+        Position headPos = gameState.HeadPosition();
+        Image image = gridImages[headPos.Row, headPos.Col];
+
+        image.Source = Images.SnakeHead;
+        image.Rotation = dirToRotation[gameState.Dir];
     }
 
     // =========================

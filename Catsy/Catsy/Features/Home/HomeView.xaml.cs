@@ -1,70 +1,70 @@
-﻿using Microsoft.Maui.Controls;
-using System;
-
-#if WINDOWS
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
-#endif
-
-namespace Catsy;
+﻿namespace Catsy;
 
 public partial class HomeView : ContentView
 {
-    private bool _wheelCooldown;
+    HomeViewModel VM => (HomeViewModel)BindingContext;
+
+    View? _current;
+    int _lastIndex;
+    double PageWidth =>
+    Width > 0 ? Width :
+    PagerHost.Width > 0 ? PagerHost.Width :
+    0;
 
     public HomeView()
     {
         InitializeComponent();
         BindingContext = new HomeViewModel();
 
-#if WINDOWS
-        Carousel.HandlerChanged += (_, __) =>
+        ShowScene(animated: false);
+        _lastIndex = VM.SelectedIndex;
+
+        VM.PropertyChanged += (_, e) =>
         {
-            if (Carousel.Handler?.PlatformView is Microsoft.UI.Xaml.Controls.ListView list)
-            {
-                list.PointerWheelChanged += OnPointerWheelChanged;
-            }
+            if (e.PropertyName == nameof(HomeViewModel.SelectedIndex))
+                ShowScene(animated: true);
         };
-#endif
+
+        PagerHost.GestureRecognizers.Add(new SwipeGestureRecognizer
+        {
+            Direction = SwipeDirection.Left,
+            Command = new Command(() => VM.GoRight())
+        });
+
+        PagerHost.GestureRecognizers.Add(new SwipeGestureRecognizer
+        {
+            Direction = SwipeDirection.Right,
+            Command = new Command(() => VM.GoLeft())
+        });
     }
 
-#if WINDOWS
-    private void OnPointerWheelChanged(object sender, PointerRoutedEventArgs e)
+    async void ShowScene(bool animated)
     {
-        if (_wheelCooldown)
-        {
-            e.Handled = true;
-            return;
-        }
-
-        if (BindingContext is not HomeViewModel vm)
+        if (PageWidth <= 0)
             return;
 
-        int delta = e.GetCurrentPoint(null).Properties.MouseWheelDelta;
+        int direction = VM.SelectedIndex > _lastIndex ? 1 : -1;
+        _lastIndex = VM.SelectedIndex;
 
-        if (delta < 0 && vm.CanSwipeRight)
+        var next = new SceneView
         {
-            vm.SelectedIndex++;
-            StartCooldown();
-        }
-        else if (delta > 0 && vm.CanSwipeLeft)
+            BindingContext = VM.CurrentScene,
+            TranslationX = animated ? direction * PageWidth : 0
+        };
+
+        PagerHost.Children.Add(next);
+
+        if (_current != null && animated)
         {
-            vm.SelectedIndex--;
-            StartCooldown();
+            await Task.WhenAll(
+                _current.TranslateTo(-direction * PageWidth, 0, 250, Easing.CubicOut),
+                next.TranslateTo(0, 0, 250, Easing.CubicOut)
+            );
+
+            PagerHost.Children.Remove(_current);
+            _current.BindingContext = null;
         }
 
-        // 🔒 SOHA ne engedjük tovább
-        e.Handled = true;
+        _current = next;
     }
-
-    private void StartCooldown()
-    {
-        _wheelCooldown = true;
-
-        // megakadályozza az ugrálást / gyors scrollt
-        Dispatcher.DispatchDelayed(
-            TimeSpan.FromMilliseconds(250),
-            () => _wheelCooldown = false);
-    }
-#endif
 }

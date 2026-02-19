@@ -120,6 +120,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Features\Home\SceneView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Shop\ShopView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,6 +1,5 @@
-﻿using Microsoft.Maui.Controls;
-
-#if WINDOWS
+﻿#if WINDOWS
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Platform;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
@@ -12,7 +11,7 @@ namespace Catsy;
 public sealed class KeyboardListenerBehavior : Behavior<ContentPage>
 {
 #if WINDOWS
-    FrameworkElement? _nativeView;
+    FrameworkElement? _root;
 #endif
 
     protected override void OnAttachedTo(ContentPage bindable)
@@ -30,18 +29,24 @@ public sealed class KeyboardListenerBehavior : Behavior<ContentPage>
         if (sender is not ContentPage page)
             return;
 
-        _nativeView = page.Handler?.PlatformView as FrameworkElement;
+        var window = page.Handler?.MauiContext?
+            .Services
+            .GetService(typeof(Microsoft.UI.Xaml.Window))
+            as Microsoft.UI.Xaml.Window;
 
-        if (_nativeView == null)
+        if (window?.Content is not FrameworkElement root)
             return;
 
-        _nativeView.KeyDown += OnKeyDown;
-        _nativeView.IsTabStop = true;
-        _nativeView.Focus(FocusState.Programmatic);
+        _root = root;
+
+        _root.KeyDown += OnKeyDown;
+        _root.IsTabStop = true;
+        _root.Focus(FocusState.Programmatic);
     }
 
     private void OnKeyDown(object sender, KeyRoutedEventArgs e)
     {
+        System.Diagnostics.Debug.WriteLine(e.Key);
         SnakeInputRouter.HandleKey(e.Key);
     }
 #endif
@@ -49,8 +54,8 @@ public sealed class KeyboardListenerBehavior : Behavior<ContentPage>
     protected override void OnDetachingFrom(ContentPage bindable)
     {
 #if WINDOWS
-        if (_nativeView != null)
-            _nativeView.KeyDown -= OnKeyDown;
+        if (_root != null)
+            _root.KeyDown -= OnKeyDown;
 #endif
         base.OnDetachingFrom(bindable);
     }

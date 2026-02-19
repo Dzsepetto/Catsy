@@ -22,35 +22,22 @@ public partial class App : Application
         var window = new Window(_mainLayoutPage);
 
 #if WINDOWS
-        window.HandlerChanged += (_, __) =>
-        {
-            if (window.Handler?.PlatformView is Microsoft.UI.Xaml.Window nativeWindow)
-            {
-                var hWnd = WindowNative.GetWindowHandle(nativeWindow);
-               var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
-                var appWindow = AppWindow.GetFromWindowId(windowId);
+window.HandlerChanged += (_, __) =>
+{
+    if (window.Handler?.PlatformView is Microsoft.UI.Xaml.Window nativeWindow)
+    {
+        var hWnd = WindowNative.GetWindowHandle(nativeWindow);
+        var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+        var appWindow = AppWindow.GetFromWindowId(windowId);
 
-                // 📱 Telefon arány
-                var size = new SizeInt32(420, 900);
-                appWindow.Resize(size);
+        // induló méret (csak induláskor!)
+        appWindow.Resize(new SizeInt32(500, 900));
 
-                // 🔒 Fixálás (nincs SetMinSize → workaround)
-                appWindow.Changed += (_, args) =>
-                {
-                    if (args.DidSizeChange)
-                    {
-                        if (appWindow.Size.Width != size.Width ||
-                            appWindow.Size.Height != size.Height)
-                        {
-                            appWindow.Resize(size);
-                        }
-                    }
-                };
-
-                nativeWindow.Activate(); // 🔑 fókusz → keyboard listener működik
-            }
-        };
+        nativeWindow.Activate();
+    }
+};
 #endif
+
 
         return window;
     }

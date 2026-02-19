@@ -1,16 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using Catsy;
+using System.Collections.ObjectModel;
 
 public sealed class HomeViewModel : BindableObject
 {
-    public ObservableCollection<string> Pages { get; } = new()
+    public ObservableCollection<SceneModel> Pages { get; } = new()
     {
-        "Page 1",
-        "Page 2",
-        "Page 3",
-        "Page 4"
+        new() { Title="City", Background="city.png" },
+        new() { Title="Forest", Background="forest.png" }
     };
 
-    private int _selectedIndex;
+    int _selectedIndex;
     public int SelectedIndex
     {
         get => _selectedIndex;
@@ -21,12 +20,16 @@ public sealed class HomeViewModel : BindableObject
             {
                 _selectedIndex = clamped;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CanSwipeLeft));
-                OnPropertyChanged(nameof(CanSwipeRight));
+                OnPropertyChanged(nameof(CurrentScene));
             }
         }
     }
 
-    public bool CanSwipeLeft => SelectedIndex > 0;
-    public bool CanSwipeRight => SelectedIndex < Pages.Count - 1;
+    public SceneModel CurrentScene => Pages[SelectedIndex];
+
+    public bool CanLeft => SelectedIndex > 0;
+    public bool CanRight => SelectedIndex < Pages.Count - 1;
+
+    public void GoLeft() { if (CanLeft) SelectedIndex--; }
+    public void GoRight() { if (CanRight) SelectedIndex++; }
 }

@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Catsy.Features.Shell"
-             xmlns:input="clr-namespace:Catsy"
-             x:Class="Catsy.MainLayoutPage"
-             x:DataType="vm:MainLayoutViewModel"
-             BackgroundColor="#202020">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Catsy.Features.Shell"
+    xmlns:input="clr-namespace:Catsy"
+    x:Class="Catsy.MainLayoutPage"
+    x:DataType="vm:MainLayoutViewModel"
+    BackgroundColor="Black">
 
-    <!-- 🔑 billentyűfigyelő -->
     <ContentPage.Behaviors>
         <input:KeyboardListenerBehavior />
     </ContentPage.Behaviors>
 
-    <!-- 🧱 háttér + középre igazítás -->
-    <Grid HorizontalOptions="Center"
-      VerticalOptions="Center">
+    <Grid>
 
-        <!-- 📱 telefon méretű konténer -->
-        <Grid WidthRequest="420"
-              HeightRequest="900"
-              BackgroundColor="White">
+        <Grid
+            WidthRequest="420"
+            HeightRequest="900"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            BackgroundColor="White">
 
-            <!-- 🔽 IDE KÖLTÖZÖTT A RÉGI TARTALOM -->
             <Grid RowDefinitions="*,64">
 
-                <ContentView Grid.Row="0"
-                             Content="{Binding CurrentView}" />
+                <ContentView
+                    Grid.Row="0"
+                    Content="{Binding CurrentView}" />
 
-                <Grid Grid.Row="1"
-                      BackgroundColor="Black"
-                      ColumnDefinitions="*,*,*,*,*"
-                      Padding="12,8">
+                <Grid
+                    Grid.Row="1"
+                    BackgroundColor="red"
+                    ColumnDefinitions="*,*,*,*,*"
+                    Padding="12,8">
 
                     <ImageButton Grid.Column="0"
                                  BackgroundColor="Transparent"
