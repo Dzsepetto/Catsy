@@ -1,12 +1,14 @@
-﻿using Catsy;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+
+namespace Catsy;
 
 public sealed class HomeViewModel : BindableObject
 {
-    public ObservableCollection<SceneModel> Pages { get; } = new()
+    public ObservableCollection<HomePageItem> Pages { get; } = new()
     {
-        new() { Title="City", Background="city.png" },
-        new() { Title="Forest", Background="forest.png" }
+        new HomePageItem { Title = "Welcome" },
+        new HomePageItem { Title = "Catsy Shop" },
+        new HomePageItem { Title = "Mini Games" }
     };
 
     int _selectedIndex;
@@ -15,21 +17,16 @@ public sealed class HomeViewModel : BindableObject
         get => _selectedIndex;
         set
         {
-            int clamped = Math.Max(0, Math.Min(value, Pages.Count - 1));
-            if (_selectedIndex != clamped)
+            if (_selectedIndex != value)
             {
-                _selectedIndex = clamped;
+                _selectedIndex = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CurrentScene));
             }
         }
     }
+}
 
-    public SceneModel CurrentScene => Pages[SelectedIndex];
-
-    public bool CanLeft => SelectedIndex > 0;
-    public bool CanRight => SelectedIndex < Pages.Count - 1;
-
-    public void GoLeft() { if (CanLeft) SelectedIndex--; }
-    public void GoRight() { if (CanRight) SelectedIndex++; }
+public class HomePageItem
+{
+    public string Title { get; set; } = string.Empty;
 }

@@ -4,11 +4,46 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Catsy.HomeView">
 
-    <Border
-        BackgroundColor="Green"
-        StrokeThickness="0">
+    <Grid>
+        <CarouselView
+            ItemsSource="{Binding Pages}"
+            Position="{Binding SelectedIndex, Mode=TwoWay}"
+            IndicatorView="HomeIndicator"
+            IsSwipeEnabled="True"
+            PeekAreaInsets="0"
+            IsBounceEnabled="False"
+            >
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                           SnapPointsType="MandatorySingle"
+                           SnapPointsAlignment="Center"/>
+            </CarouselView.ItemsLayout>
 
-        <Grid x:Name="PagerHost" />
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid BackgroundColor="LightGreen">
 
-    </Border>
+                        <Label Text="{Binding Title}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="32"
+                               TextColor="Black" />
+
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+
+        </CarouselView>
+
+        <IndicatorView
+            x:Name="HomeIndicator"
+            HorizontalOptions="Center"
+            VerticalOptions="End"
+            Margin="0,0,0,20"
+            IndicatorColor="#CCCCCC"
+            SelectedIndicatorColor="Black"
+            IndicatorSize="8" />
+
+    </Grid>
+
 </ContentView>

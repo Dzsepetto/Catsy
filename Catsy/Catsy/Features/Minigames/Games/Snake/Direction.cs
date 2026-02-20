@@ -47,5 +47,15 @@ namespace Catsy.Features.Minigames.Games.Snake
         {
             return !(left == right);
         }
+        public static Direction FromOffset(int rowOffset, int colOffset)
+        {
+            if (rowOffset == -1 && colOffset == 0) return Up;
+            if (rowOffset == 1 && colOffset == 0) return Down;
+            if (rowOffset == 0 && colOffset == -1) return Left;
+            if (rowOffset == 0 && colOffset == 1) return Right;
+
+            throw new ArgumentException("Invalid direction offset");
+        }
+
     }
 }

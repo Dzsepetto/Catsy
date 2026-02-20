@@ -6,12 +6,13 @@ namespace Catsy.Features.Minigames.Games.Snake
     {
         public static readonly ImageSource Empty =
             LoadImage("empty");
-
+        public static readonly ImageSource SnakeTail = 
+            LoadImage("cat01_tail");
         public static readonly ImageSource SnakeBody =
-            LoadImage("body");
+            LoadImage("cat01_body");
 
         public static readonly ImageSource SnakeHead =
-            LoadImage("head");
+            LoadImage("cat01_head");
         public static readonly ImageSource Food =
             LoadImage("food");
 

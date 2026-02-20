@@ -161,9 +161,10 @@ public partial class SnakeView : ContentView
     private void Draw()
     {
         DrawGrid();
-        DrawSnakeHead();
+        DrawSnake();
         ScoreText.Text = $"Score: {gameState.Score}";
     }
+
 
     private void DrawGrid()
     {
@@ -180,14 +181,90 @@ public partial class SnakeView : ContentView
         }
     }
 
-    private void DrawSnakeHead()
+    private void DrawSnake()
     {
-        Position headPos = gameState.HeadPosition();
-        Image image = gridImages[headPos.Row, headPos.Col];
+        var positions = gameState.SnakePositions().ToList();
 
-        image.Source = Images.SnakeHead;
-        image.Rotation = dirToRotation[gameState.Dir];
+        if (positions.Count == 0)
+            return;
+
+        // ===== HEAD =====
+        var head = positions[0];
+        var headImg = gridImages[head.Row, head.Col];
+        headImg.Source = Images.SnakeHead;
+        headImg.Rotation = dirToRotation[gameState.Dir];
+
+        if (positions.Count == 1)
+            return;
+
+        // ===== TAIL =====
+        var tail = positions[^1];
+        var beforeTail = positions[^2];
+
+        var tailImg = gridImages[tail.Row, tail.Col];
+        tailImg.Source = Images.SnakeTail;
+
+        Direction tailDir = GetDirection(tail, beforeTail);
+        tailImg.Rotation = dirToRotation[tailDir];
+
+        // ===== BODY =====
+        // ===== BODY =====
+        for (int i = 1; i < positions.Count - 1; i++)
+        {
+            var prev = positions[i - 1];
+            var current = positions[i];
+            var next = positions[i + 1];
+
+            var bodyImg = gridImages[current.Row, current.Col];
+            bodyImg.Source = Images.SnakeBody;
+
+            var dirFromPrev = GetDirection(current, prev);
+            var dirToNext = GetDirection(current, next);
+
+            // ===== Egyenes =====
+            if ((dirFromPrev == Direction.Left && dirToNext == Direction.Right) ||
+                (dirFromPrev == Direction.Right && dirToNext == Direction.Left))
+            {
+                bodyImg.Rotation = 90; // vízszintes
+            }
+            else if ((dirFromPrev == Direction.Up && dirToNext == Direction.Down) ||
+                     (dirFromPrev == Direction.Down && dirToNext == Direction.Up))
+            {
+                bodyImg.Rotation = 0; // függõleges
+            }
+            else
+            {
+                // ===== KANYAR =====
+                bodyImg.Rotation = GetCornerRotation(dirFromPrev, dirToNext);
+            }
+        }
+
     }
+    private int GetCornerRotation(Direction from, Direction to)
+    {
+        if ((from == Direction.Up && to == Direction.Left) ||
+            (from == Direction.Left && to == Direction.Up))
+            return 0;
+
+        if ((from == Direction.Up && to == Direction.Right) ||
+            (from == Direction.Right && to == Direction.Up))
+            return 90;
+
+        if ((from == Direction.Down && to == Direction.Right) ||
+            (from == Direction.Right && to == Direction.Down))
+            return 180;
+
+        return 270;
+    }
+
+    private Direction GetDirection(Position from, Position to)
+    {
+        return Direction.FromOffset(
+            to.Row - from.Row,
+            to.Col - from.Col);
+    }
+
+
 
     // =========================
     // OVERLAY
